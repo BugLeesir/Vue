@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a :href="url">链接1</a>
+        <input type="text" v-model="url">
+        <input type="button" value="点我" @click="handle()">
+        <input type="text" v-model="age">
+        <span v-if="age <= 35">年轻人</span>
+        <span v-else-if="age>35 && age<=60">中年人</span>
+        <span v-else>老年人</span>
+        
+        <span v-show="age<=35">年轻人</span>
+        <span v-show="age>35&&age<=60">中年人</span>
+        <span v-show="age>60">老年人</span>
+
+        <div v-for="addr in addrs">
+            {{ addr}}
+        </div>
+        <hr>
+        <div v-for="(addr,index) in addrs">
+            {{ index+1}} : {{ addr }}
+        </div>
+    </div>
+</body>
+<script>
+    // 定义vue对象
+    new Vue({
+        el: "#app", // Vue 接管区域
+        data:{
+            url:"http://www.baidu.com",
+            age: 28,
+            addrs: ['a', 'b', 'c', 'd', 'e']
+            
+        },
+        methods: {
+            handle:function(){
+                alert("点我一下");
+            }
+        }
+    })
+</script>
+</html>
