@@ -8,6 +8,66 @@
     
 </head>
 <body>
-    
+    <div id="app">
+        <table border="1" cellspacing="0" width="60%">
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>性别</th>
+                <th>成绩</th>
+                <th>等级</th>
+            </tr>
+
+            <tr align="center" v-for="(user,index) in users">
+                <td>{{index+1}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td>
+                    <span v-if="user.gender == 1">男</span>
+                    <span v-if="user.gender == 2">女</span>
+                </td>
+                <td>{{user.score}}</td>
+                <td>
+                    <span v-if="user.score >= 85">优秀</span>
+                    <span v-else-if="user.score >= 60">及格</span>
+                    <span style="color: crimson;" v-else>不及格</span>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+<script>
+
+
+    new Vue({
+        el:"#app",
+        data:{
+            users:[{
+                name:"Tom",
+                age:23,
+                gender:1,
+                score: 78
+            },{
+                name:"Jack",
+                age:23,
+                gender:2,
+                score: 73
+            },{
+                name:"John",
+                age:25,
+                gender:1,
+                score: 66
+            }]
+        },
+        methods:{
+            
+        },
+        mounted () {
+            alert("Mount")
+        }
+    })
+</script>
 </body>
 </html>
