@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button">
+    <div id="div1"> </div>
+</body>
+<script>
+    function getDate(){
+        var xmlHttpRequest = new XMLHttpRequest();
+
+        xmlHttpRequest.open("GET", "http://yapi.smart-xwork.cn/mock.169327/emp/list");
+        xmlHttpRequest.send();
+
+        xmlHttpRequest.onreadystatechange = function(){
+            if(xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200){
+                var data = xmlHttpRequest.responseText;
+                document.getElementById("div1").innerHTML = data;
+            }
+        }
+        
+    }
+</script>
+</html>
