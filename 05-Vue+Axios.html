@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/axios.js"></script>
+</head>
+<body>
+    <div id="app">
+        <table border="1" cellspacing="0" width="60%">
+        <tr>
+           <th>id</th>
+           <th>邮箱</th>
+           <th>名</th>
+           <th>姓</th>
+           <th>头像</th> 
+        </tr>
+
+        <tr align="center" v-for="(emp,index) in emps">
+            <td>{{emp.id}}</td>
+            <td>{{emp.email}}</td>
+            <td>{{emp.first_name}}</td>
+            <td>{{emp.last_name}}</td>
+            <td>
+                <img :src="emp.avatar" alt="" width="70px" height="50px">
+            </td> 
+        </tr>
+        </table>
+    </div>
+</body>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            emps:[]
+        },
+        mounted(){
+            // 发送异步请求加载数据
+            axios.get("https://reqres.in/api/users").then(result => {
+                // 将查询到的数据赋值给emps
+                this.emps = result.data.data;
+            }).catch(error => {
+                alert(error.message);
+            })
+        }
+    })
+</script>
+</html>
